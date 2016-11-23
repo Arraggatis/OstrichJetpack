@@ -83,6 +83,7 @@ function retryGame() {
   
   //Resumes the game
   document.getElementById("game-over").style.display = "none";
+  document.getElementById("leaderboard").style.display = "none";
   canPause = true;
   resume();
 }
