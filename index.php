@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TryCatch - Home</title>
+  <!-- CSS stylesheets -->
+  <link href="style/base.css" rel="stylesheet" type="text/css"/>
+  <link href="style/menus.css" rel="stylesheet" type="text/css"/>
+  <link href="style/game.css" rel="stylesheet" type="text/css"/>
+  
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+  
+  <!-- JQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  
+  <!-- Sounds library-->
+  <script src="js/howlerjs/howler.js"></script>
+  
+  <!-- Sound and menu scripts -->
+  <script src="js/sounds.js"></script>
+  <script src="js/menus.js"></script>
+</head>
+
+<body>
+
+  <!-- This is the pause screen darken effect -->
+  <div id="pause-menu-screen-darken"></div>
+  
+  <div id="wrapper">
+  
+    <!-- This is the main menu section -->
+    <div id="main-menu">
+      <div id="title">
+        
+        <!-- Cloud image for the main menu -->
+        <svg id="cloud" width="391px" height="205px" viewBox="97 -36 391 205" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs>
+            <path d="M265.808325,1.31550967 C228.22354,6.67438796 227.113585,38.0741687 227.113585,38.0741687 C227.113585,38.0741687 212.65845,29.3635502 187.134662,40.7364502 C161.610874,52.1093502 169.112766,88.5173035 169.112766,88.5173035 C169.112766,88.5173035 153.603434,84.0063122 142.806618,95.1495007 C132.009802,106.292689 139.797901,124.57602 139.797901,124.57602 L447.918928,124.57602 C447.918928,124.57602 450.191875,92.2664449 428.801025,80.9166794 C407.410176,69.5669139 389.00948,80.9166796 389.00948,80.9166796 C389.00948,80.9166796 401.879059,39.0874732 370.986053,26.6492481 C340.093048,14.211023 316.687262,42.9633878 316.687262,42.9633878 C316.687262,42.9633878 309.270245,-4.8813366 265.808325,1.31550967 Z" id="path-1"></path>
+            <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+              <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+              <feGaussianBlur stdDeviation="20" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+              <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+            </filter>
+          </defs>
+          <g id="Path-5" stroke="none" fill="none">
+            <use fill="white" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use fill="white" fill-opacity="1" xlink:href="#path-1"></use>
+          </g>
+        </svg>
+        
+        <h1>TryCatch</h1>
+      </div>
+      <!-- This is the section that holds the main menu buttons -->
+      <div id="buttons">
+        <!-- This is the game type selection section -->
+        <div id="game-collection">
+          <div class="selector">
+            <button class="theme-selected available" name="spelling" id="spelling-button"><img id="spelling-ship" src="images/spelling/ship.png"></button>
+            <label for="spelling">Spelling</label>
+          </div>
+          <div class="selector">
+            <button class="theme available" name="math" id="math-button">
+              <img id="math-crab" src="images/math/crab.png">
+            </button>
+            <label for="math">Math</label>
+          </div>
+          <div class="selector">
+            <button class="theme" name="shapes" id="shapes-button">
+              <div class="banner">Coming Soon</div>
+            </button>
+            <label for="shapes">Shapes</label>
+          </div>
+        </div>
+        
+        <!-- This is the start, difficulty, leaderboard, and achievement buttons -->
+        <div id="button-collection">
+          <button id="difficulty-button" class="button">Start Game</button> 
+          <button class="button leaderboard-button">Leaderboard</button>      
+          <button id="achievement-button" class="button">Achievements</button>
+          <!-- Mute button -->
+            <img class="mute" src="images/unmute.png" alt="mute">
+        </div>
+      </div>
+    </div>
+    <!-- This is the game section (hidden on start) -->
+    <div id="game">
+      <canvas id="background"></canvas>
+      <canvas id="elements"></canvas>
+      <canvas id="gradient"></canvas>
+      <canvas id="player" height="178"></canvas>
+      <div id="mobile-buttons">
+        <div id="left-button"></div>
+        <div id="right-button"></div>
+      </div>
+      <!-- Top menu UI for game section -->
+      <div id="top-menu">
+        <!-- Left side of the top UI displaying difficulty and pause button -->
+        <div id="left">
+          <p id="level-counter"></p>
+          <div id="menu-pause">
+            <p id="pause-button">Pause</p>
+          </div>
+        </div>
+        <!-- Right side of the top UI displaying lives and score -->
+        <div id="right">
+          <table id="lives-table">
+            <tr>
+              <td><img src="images/lives.png" id="heart1"></td>
+              <td><img src="images/lives.png" id="heart2"></td>
+              <td><img src="images/lives.png" id="heart3"></td>
+              <td><img src="images/lives.png" id="heart4"></td>
+              <td><img src="images/lives.png" id="heart5"></td>
+            </tr>
+          </table>
+          <p id="score-counter"></p>
+        </div>
+      </div>
+      <!-- Answer displayed -->
+      <div id="answer-section">
+        <table id="answer-table">
+          <tr id="answer-row"></tr>
+        </table>
+      </div>
+    </div>
+    
+    <!-- This is the pause menu section (hidden by default) -->
+    <div id="pause-menu">
+      <h2>Game Paused</h2>
+      <button id="resume-button" class="button">Resume</button>
+      <button class="button main-menu">Main Menu</button>
+      <br>
+      <img class="mute" src="images/unmute.png" alt="mute">
+    </div>
+    
+    <!-- This is the tutorial section (hidden by default) -->
+    <div id="tutorial-screen" class="drop-menu">
+      <h2 class="how-to-play">How to play - Spelling</h2>
+      <img src="images/tutorial/mathtutorial.jpg" class="math-tutorial">
+      <img src="images/tutorial/spellingtutorial.jpg" class="spelling-tutorial">
+      <button class="button close-tutorial">Back</button>
+    </div>
+    
+    <!-- This is the achievement section (hidden by default) -->
+    <div id="achievement-screen" class="drop-menu">
+      <h2>Achievements</h2>
+      <div id="achievements-div">
+        <table id="achievements-table">
+          <tr>
+            <td><img id="unlock1000" src="images/lock.png"></td>
+            <td colspan="2">Earn 1000 points in any game mode.</td>
+          </tr>
+          <tr>
+            <td><img id="unlock5000" src="images/lock.png"></td>
+            <td colspan="2">Earn 5000 points in any game mode.</td>
+          </tr>
+          <tr>
+            <td><img id="unlock10000" src="images/lock.png"></td>
+            <td colspan="2">Earn 10000 points in any game mode.</td>
+          </tr>
+          <tr>
+            <td><img id="unlockEgg" src="images/lock.png"></td>
+            <td colspan="2">Collect the easter egg 5 times in a game.</td>
+          </tr>
+        </table>
+      </div>
+      <button class="button main-menu-button">Back</button>
+    </div>
+     
+     <!-- This is the difficulty menu section (hidden by default) -->
+      <div id="difficulty-menu" class="drop-menu">
+        <h2>Choose Difficulty</h2>
+        <button id="easy" class="button diff">Easy</button>
+        <br/>
+        <button id="medium" class="button-selected diff">Medium</button>
+        <br/>
+        <button id="hard" class="button diff">Hard</button> 
+        <button id = "tutorial-button" class="button">Tutorial</button>
+        <button id="start-button" class="button">Start Game</button> 
+        <button class="button main-menu-button">Back</button>
+      </div>
+      
+      <!-- This is the leaderboard section (hidden by default) -->
+      <div id="leaderboard" class="drop-menu">
+        <h2 id="leaderboard-header">Leaderboard - Spelling</h2>
+            <?php include 'php/server-logOn.php'; ?>
+
+          <div id="score-table">
+            <div id="spelling-scores">
+              <table class="scores">
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Score</th>
+                </tr>
+                <tr>
+                  <td>
+                    <?php include 'php/server-listPosition.php'; ?>
+                  </td>
+                  <td>
+                    <?php include 'php/sp_listNames.php'; ?>
+                  </td>
+                  <td>
+                    <?php include 'php/sp_listScores.php'; ?>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            
+            <div id="math-scores">
+              <table class="scores">
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Score</th>
+                </tr>
+                <tr>
+                  <td>
+                    <?php include 'php/server-listPosition.php'; ?>
+                  </td>
+                  <td>  
+                    <?php include 'php/math_listNames.php'; ?>
+                  </td>
+                  <td>
+                    <?php include 'php/math_listScores.php'; ?>
+                  </td>
+                </tr>
+              </table>
+            </div>
+        </div>
+        <div id="previous-board">
+            <button class="button previous-board">Previous</button>
+        </div>
+        <div id="next-board">
+          <button class="button next-board">Next</button>
+        </div>
+        <div id="back-button">
+          <button class="button main-menu-button">Back</button>
+        </div>
+        <?php include 'php/server-logOff.php'; ?>
+      </div>
+    
+    <!-- This is the game over section -->
+    <div id="game-over">
+      <div id="game-over-header">
+        <h1>Game Over!</h1>
+        <h1 id="score" class="score"></h1>
+      </div>
+        <form action="php/addScore.php" method="post">
+          <div id="user-score"> Your name: 
+            <input type="text" size="3" maxlength="3" name="initials" id="game-over-input">
+            <input id="final-score" name="final-score" visibility="hidden">
+            <input id="gametype" name="gametype" visibility="hidden">
+          </div>
+          <br>
+        <input type="submit" value="Submit score" class="button">
+        </form>
+        <button id="retry-button" class="button">Retry</button>
+        <br>
+        <button class="button leaderboard-button">Leaderboard</button>
+        <br>
+        <button class="button main-menu">Main Menu</button>
+        <br>
+    </div>
+  </div>
+  <!-- Background for gamemodes and menu -->
+  <div id="menu-bg"></div>
+  <div id="spelling-bg"></div>
+  <div id="math-bg"></div>
+  
+  <!-- Global scripts -->
+  <script src="js/globals.js"></script>
+  <script src="js/game.js"></script>
+  
+  <!-- Menu scripts -->
+  <script src="js/selectGamemode.js"></script>
+  <script src="js/setDifficulty.js"></script>
+  <script src="js/pause.js"></script>
+
+  <!-- Achievement script -->
+  <script src="js/trophy.js"></script>
+
+  <!-- Image type scripts -->
+  <script src="js/drawable.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/element.js"></script>
+  <script src="js/specialElement.js"></script>
+  <script src="js/bonusElement.js"></script>
+  
+  <!-- Game scripts -->
+  <script src="js/loadGamemode.js"></script>
+  <script src="js/collision.js"></script>
+  <script src="js/lives.js"></script>
+  <script src="js/gameOver.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/bonusLevel.js"></script>
+  <script src="js/background.js"></script>
+  
+  <!-- Canvas resizing script -->
+  <script src="js/resizeCanvas.js"></script>
+</body>
+</html>
