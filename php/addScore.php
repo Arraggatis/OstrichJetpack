@@ -1,9 +1,9 @@
 <?php 
 
-$servername = "mysql13.000webhost.com"; 
-$username = "a5796219_admin"; 
+$servername = "server75.hosting24.com"; 
+$username = "trycatch_admin"; 
 $password = "ilikepie123"; 
-$dbname = "a5796219_hs"; 
+$dbname = "trycatch_hs"; 
  
 // Create connection 
 $conn = new mysqli($servername, $username, $password, $dbname); 
@@ -29,5 +29,5 @@ if ($conn->query($sql) === TRUE) {
 } 
 
 $conn->close(); 
-header('Location: http://trycatchbeta.netai.net/'); 
+header('Location: http://trycatchbeta.com/'); 
 ?>
