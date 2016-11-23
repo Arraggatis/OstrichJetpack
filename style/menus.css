@@ -241,7 +241,6 @@ button .banner {
 }
 
 #difficulty-menu #start-button {
-
   background-color: #0AAFF1;
   background: #F1AE3E;
 }
@@ -355,6 +354,10 @@ button .banner {
 /**********************/
 /* Leaderboard Screen */
 /**********************/
+#leaderboard {
+  z-index: 11;
+}
+
 #score-table {
   position: relative;
   margin-top: 60px;
