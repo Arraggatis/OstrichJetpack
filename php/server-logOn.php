@@ -1,5 +1,5 @@
  <?php 
-    $servername = "server75.hosting24.com";
+    $servername = "localhost";
     $username = "trycatch_admin";
     $password = "ilikepie123";
     $dbname = "trycatch_hs";
