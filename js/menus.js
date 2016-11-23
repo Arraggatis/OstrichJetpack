@@ -79,7 +79,7 @@ $(document).ready(function () {
 function goToMainMenu() {
   buttonSound.play();
   canPause = false;
-  document.location.href = 'index.html';
+  document.location.href = 'index.php';
 }
 
 var spellingLeaderboard = true; // Start at the spelling leaderboard
