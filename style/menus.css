@@ -354,8 +354,8 @@ button .banner {
 /**********************/
 /* Leaderboard Screen */
 /**********************/
-#leaderboard {
-  z-index: 11 !important;
+#leaderboard.drop-menu {
+  z-index: 11;
 }
 
 #score-table {
